@@ -1,4 +1,9 @@
-import { SignInButton, SignOutButton } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs";
 import Link from "next/link";
 
 export const Navigation = () => {
@@ -12,10 +17,14 @@ export const Navigation = () => {
             </h1>
           </div>
           <div className="flex items-center gap-4">
-            <SignInButton mode="modal" />
-            {/* <UserButton /> */}
-            <Link href="/user-profile">Profile</Link>
-            <SignOutButton />
+            <SignedOut>
+              <SignInButton mode="modal" />
+            </SignedOut>
+            <SignedIn>
+              {/* <UserButton /> */}
+              <Link href="/user-profile">Profile</Link>
+              <SignOutButton />
+            </SignedIn>
           </div>
         </div>
       </div>
